@@ -1,21 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
 
 type TeachingCardProps = {
   title: string;
   description: string;
+  image?: string;
+  slug: string;
 };
 
 export default function TeachingCard({
   title,
   description,
+  image,
+  slug,
 }: TeachingCardProps) {
-  const [expanded, setExpanded] = useState(false);
-
   return (
-    <div className="border border-stone-800 rounded-2xl p-6 bg-stone-950 hover:border-yellow-500 transition">
+    <Link
+      href={`/teachings/${slug}`}
+      className="block h-full border border-stone-800 rounded-2xl p-6 bg-stone-950 hover:border-yellow-500 transition"
+    >
       
+      {image && (
+
+  <img
+    src={image}
+    alt={title}
+    className="w-full h-56 object-cover rounded-2xl mb-4"
+  />
+
+)}
+
       <h2 className="text-2xl font-semibold mb-4">
         {title}
       </h2>
@@ -24,22 +39,9 @@ export default function TeachingCard({
         {description}
       </p>
 
-      {expanded && (
-        <div className="text-stone-400 leading-7 mb-4">
-          <p>
-            This teaching is part of the deeper wisdom traditions of Buddhism
-            and helps practitioners cultivate mindfulness, wisdom, compassion,
-            and liberation from suffering.
-          </p>
-        </div>
-      )}
-
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="text-yellow-400 hover:text-yellow-300 transition font-medium"
-      >
-        {expanded ? "Show Less" : "Read More"}
-      </button>
-    </div>
+      <span className="text-yellow-400 font-medium">
+        Read More
+      </span>
+    </Link>
   );
 }
