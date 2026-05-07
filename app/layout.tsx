@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
+const siteUrl = "https://dhammaonline.vercel.app";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,8 +17,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dhamma Online",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Dhamma Online",
+    template: "%s | Dhamma Online",
+  },
   description: "Learn and practice the teachings of the Buddha",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Dhamma Online",
+    description: "Learn and practice the teachings of the Buddha",
+    url: siteUrl,
+    siteName: "Dhamma Online",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dhamma Online",
+    description: "Learn and practice the teachings of the Buddha",
+  },
   verification: {
     google: "qwSFkVAeHMi6Jl0BKsoOAI_3nyYUBw-BoGUXodPB6U8",
   },

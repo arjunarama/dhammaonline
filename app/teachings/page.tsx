@@ -1,4 +1,28 @@
+import type { Metadata } from "next";
 import TeachingsList from "@/components/TeachingsList";
+
+export const metadata: Metadata = {
+  title: "Teachings",
+  description:
+    "Explore Buddhist teachings from the Dhamma Online library.",
+  alternates: {
+    canonical: "/teachings",
+  },
+  openGraph: {
+    title: "Teachings",
+    description:
+      "Explore Buddhist teachings from the Dhamma Online library.",
+    url: "/teachings",
+    siteName: "Dhamma Online",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Teachings",
+    description:
+      "Explore Buddhist teachings from the Dhamma Online library.",
+  },
+};
 
 type Teaching = {
   id: number;

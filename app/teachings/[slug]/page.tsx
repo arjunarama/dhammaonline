@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 
 type Teaching = {
   id: number;
@@ -12,7 +14,25 @@ type Teaching = {
   featured_image_url?: string;
 };
 
-async function getTeaching(slug: string): Promise<Teaching> {
+function getMetaDescription(teaching: Teaching) {
+  return (
+    teaching.short_description ||
+    teaching.full_content.slice(0, 155) ||
+    `Read ${teaching.title} on Dhamma Online.`
+  );
+}
+
+function getTeachingImage(teaching: Teaching) {
+  return (
+    teaching.featured_image_url ||
+    teaching.banner_image_url ||
+    teaching.thumbnail_image_url
+  );
+}
+
+const getTeaching = cache(async function getTeaching(
+  slug: string
+): Promise<Teaching> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/teachings/${slug}`,
     {
@@ -29,6 +49,47 @@ async function getTeaching(slug: string): Promise<Teaching> {
   }
 
   return response.json();
+});
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const teaching = await getTeaching(slug);
+  const description = getMetaDescription(teaching);
+  const image = getTeachingImage(teaching);
+  const url = `/teachings/${teaching.slug}`;
+
+  return {
+    title: teaching.title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: teaching.title,
+      description,
+      url,
+      siteName: "Dhamma Online",
+      type: "article",
+      images: image
+        ? [
+            {
+              url: image,
+              alt: teaching.title,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: teaching.title,
+      description,
+      images: image ? [image] : undefined,
+    },
+  };
 }
 
 export default async function Page({

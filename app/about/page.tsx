@@ -1,3 +1,28 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn about Dhamma Online, a platform for accessible Buddhist teachings and structured learning.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Dhamma Online",
+    description:
+      "Learn about Dhamma Online, a platform for accessible Buddhist teachings and structured learning.",
+    url: "/about",
+    siteName: "Dhamma Online",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Dhamma Online",
+    description:
+      "Learn about Dhamma Online, a platform for accessible Buddhist teachings and structured learning.",
+  },
+};
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-stone-950 text-white px-6 py-16">
