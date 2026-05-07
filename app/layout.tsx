@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Dhamma Online",
   description: "Learn and practice the teachings of the Buddha",
+  verification: {
+    google: "qwSFkVAeHMi6Jl0BKsoOAI_3nyYUBw-BoGUXodPB6U8",
+  },
 };
 
 export default function RootLayout({
