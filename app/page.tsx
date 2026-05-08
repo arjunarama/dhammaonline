@@ -23,42 +23,100 @@ export default function Home() {
     <main className="bg-black text-white">
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-yellow-500/10 to-transparent" />
 
-        <div className="relative max-w-5xl mx-auto text-center">
-          <p className="text-yellow-400 uppercase tracking-[0.3em] mb-6 text-sm">
-            Modern Buddhist Learning Platform
-          </p>
+<section className="relative h-screen overflow-hidden">
 
-          <h1 className="text-6xl md:text-8xl font-bold leading-tight mb-8">
-            Learn the
-            <span className="text-yellow-400"> Dhamma </span>
-            Online
-          </h1>
+  <img
+    src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+    alt="Meditation"
+    className="absolute inset-0 w-full h-full object-cover"
+  />
 
-          <p className="text-xl text-stone-300 leading-8 max-w-3xl mx-auto mb-10">
-            Explore authentic teachings of the Buddha through structured
-            learning, meditation guidance, and modern digital experiences.
-          </p>
+  <div className="absolute inset-0 bg-black/75" />
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/teachings"
-              className="bg-yellow-500 text-black px-8 py-4 rounded-2xl font-semibold hover:bg-yellow-400 transition"
-            >
-              Explore Teachings
-            </Link>
+  <div className="relative z-10 h-full flex items-center">
 
-            <Link
-              href="/about"
-              className="border border-stone-700 px-8 py-4 rounded-2xl hover:border-yellow-400 transition"
-            >
-              Learn More
-            </Link>
-          </div>
-        </div>
-      </section>
+    <div className="max-w-6xl mx-auto px-6">
+
+      <p className="text-yellow-400 uppercase tracking-[0.4em] mb-6 text-sm">
+        Modern Buddhist Learning Platform
+      </p>
+
+      <h1 className="text-5xl md:text-8xl font-bold leading-tight max-w-5xl">
+        Learn the
+        <span className="text-yellow-400"> Dhamma </span>
+        Online
+      </h1>
+
+      <p className="text-xl text-stone-300 leading-9 max-w-3xl mt-10">
+        Explore authentic teachings of the Buddha through structured
+        learning, meditation guidance, and immersive digital experiences.
+      </p>
+
+      <div className="flex flex-col sm:flex-row gap-4 mt-12">
+
+        <Link
+          href="/teachings"
+          className="bg-yellow-500 text-black px-8 py-4 rounded-2xl font-semibold hover:bg-yellow-400 transition"
+        >
+          Explore Teachings
+        </Link>
+
+        <Link
+          href="/about"
+          className="border border-stone-600 px-8 py-4 rounded-2xl hover:border-yellow-400 transition"
+        >
+          Learn More
+        </Link>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{/* Featured Video */}
+<section className="px-6 py-24 bg-stone-950">
+
+  <div className="max-w-5xl mx-auto">
+
+    <div className="mb-12 text-center">
+
+      <p className="text-yellow-400 uppercase tracking-[0.3em] text-sm mb-4">
+        Featured Teaching
+      </p>
+
+      <h2 className="text-5xl font-bold mb-6">
+        A Path Toward Inner Peace
+      </h2>
+
+      <p className="text-stone-300 text-xl leading-9 max-w-3xl mx-auto">
+        Listen to timeless teachings on mindfulness,
+        awareness, compassion, and liberation.
+      </p>
+
+    </div>
+
+    <div className="relative overflow-hidden rounded-[2rem] border border-stone-800 shadow-2xl">
+
+      <div className="aspect-video">
+
+        <iframe
+          className="w-full h-full"
+          src="https://res.cloudinary.com/da0xu4skc/video/upload/v1778187481/122105-724732555_zv7mex.mp4"
+          title="Buddhist Teaching"
+          allowFullScreen
+        />
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
       {/* Stats Section */}
       <section className="px-6 py-20 border-y border-stone-900">

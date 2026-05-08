@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type Teaching = {
   id: number;
@@ -103,42 +105,81 @@ export default async function Page({
 
   return (
 
-    <main className="min-h-screen bg-black text-white px-6 py-16">
-      <article className="max-w-4xl mx-auto">
-        {teaching.banner_image_url && (
-          <img
-            src={teaching.banner_image_url}
-            alt={teaching.title}
-            className="w-full h-72 md:h-96 object-cover rounded-3xl mb-10"
-          />
-        )}
+  <main className="min-h-screen bg-black text-white">
 
-        {!teaching.banner_image_url && teaching.thumbnail_image_url && (
-          <img
-            src={teaching.thumbnail_image_url}
-            alt={teaching.title}
-            className="w-full h-72 md:h-96 object-cover rounded-3xl mb-10"
-          />
-        )}
+    {/* Hero Section */}
+    <section className="relative h-[500px] overflow-hidden rounded-b-[3rem]">
 
-        <p className="text-yellow-400 uppercase tracking-widest text-sm mb-4">
+      {(teaching.banner_image_url ||
+        teaching.thumbnail_image_url) && (
+
+        <img
+          src={
+            teaching.banner_image_url ||
+            teaching.thumbnail_image_url
+          }
+          alt={teaching.title}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+      )}
+
+      <div className="absolute inset-0 bg-black/70" />
+
+      <div className="relative z-10 max-w-5xl mx-auto h-full px-6 flex flex-col justify-center">
+
+        <p className="text-yellow-400 uppercase tracking-[0.3em] text-sm mb-6">
           {teaching.category}
         </p>
 
-        <h1 className="text-5xl md:text-6xl font-bold text-yellow-400 mb-8">
+        <h1 className="text-5xl md:text-7xl font-bold leading-tight max-w-4xl">
           {teaching.title}
         </h1>
 
-        <p className="text-xl text-stone-300 leading-9 mb-10">
+        <p className="text-stone-300 text-xl leading-9 mt-8 max-w-2xl">
           {teaching.short_description}
         </p>
 
-        <div className="text-lg text-stone-200 leading-9 whitespace-pre-line">
-          {teaching.full_content}
-        </div>
-      </article>
+      </div>
 
-    </main>
+    </section>
 
-  );
+    {/* Reading Content */}
+      <section className="max-w-3xl mx-auto px-6 py-24">
+
+  <div
+    className="
+      prose
+      prose-invert
+      prose-lg
+      max-w-none
+
+      prose-headings:text-yellow-400
+      prose-headings:font-bold
+
+      prose-p:text-stone-200
+      prose-p:leading-9
+
+      prose-strong:text-white
+
+      prose-blockquote:border-yellow-500
+      prose-blockquote:text-stone-300
+
+      prose-li:text-stone-200
+
+      prose-hr:border-stone-700
+    "
+  >
+
+    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+      {teaching.full_content}
+    </ReactMarkdown>
+
+  </div>
+
+</section>
+
+  </main>
+
+);
 }
